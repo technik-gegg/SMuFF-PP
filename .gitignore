@@ -1,0 +1,8 @@
+.pio
+.pioenvs
+.piolibdeps
+*.workspace
+.vscode
+*.bak
+bin
+obj

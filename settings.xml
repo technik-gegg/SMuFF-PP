@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!-- Set up your default parameters here -->
+<root>
+    <!-- switch detailed information output on -->
+    <Verbose>true</Verbose>
+    <!-- The amount of filament needed to be purged -->
+    <TresholdMin>140</TresholdMin>
+    <TresholdMax>180</TresholdMax>
+    <!-- GCode used for purging when a relocation isn't an option -->
+    <PurgeCode><![CDATA[; SMuFF_PP: Purge start
+M83				; set extruder to relative mode (important!)
+G1 E{0} F340	; Purge out old filament
+M400			; wait for move to finish
+G4 P2500		; wait for nozzle oozing out a bit
+M82 			; set extruder back to absolute mode
+; SMuFF_PP: Purge end]]></PurgeCode>
+</root>

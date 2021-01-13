@@ -1,0 +1,17 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Files with Windows line endings
+*.cs text eol=crlf
+*.gcode text eol=crlf
+*.xml text eol=crlf
+*.csproj text eol=crlf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.pdf binary
+*.lib binary
+*.kicad_pcb binary
+*.pro binary
+*.sch binary
