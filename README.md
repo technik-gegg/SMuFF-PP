@@ -36,7 +36,7 @@ Thus, the bowden tube in between the Filament-Cutter and hotend is 70 mm long. A
 
 For models that were sliced with the Simplify3D slicer, this app will try to relocate tool changes to where the "ooze shield" starts printing. For other slicers this method does not apply, since other slicers such as PrusaSlicer or Cura unfortunatelly do not explicit name the features (such as ooze shield).
 
-For the **Duet3D/RRF** controller boards it's better to place the GCode shown above into a macro file (i.e. *smuff_pp_purge.g*) and call that macro from using:
+For the **Duet3D/RRF** controller boards it's better to place the GCode shown above into a macro file (i.e. *smuff_pp_purge.g*) and call that macro by using:
 ```gcode
 M98 P"smuff_pp_purge.g"             ; call purge macro
 ```
