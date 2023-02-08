@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!-- Set up your default parameters here -->
+<root>
+    <!-- Regular Expression patterns for finding data within GCode -->
+    <RegexPatterns>
+        <!-- 
+            Be careful; Don't change these patterns, unless you're fully aware of what you're doing 
+        -->
+        <Tool><![CDATA[^[T]\d(.*)$]]></Tool>
+        <Slicer><![CDATA[^(.*?(.enerated\s(with|by))\s(\b.+\b))]]></Slicer>
+        <Extrusion><![CDATA[G[1|2|3|5].([X].*|[Y].*)([E][+-]?(\d+([.]\d*)?(e[+-]?\d+)?|[.]\d+(e[+-]?\d+)?))]]></Extrusion>
+        <Feature><![CDATA[^; (feature)\s(\b.*\b)$]]></Feature>
+    </RegexPatterns>
+
+    <!-- 
+        ==================================================================
+        GCode to be inserted for purging when a relocation isn't an option
+        ==================================================================
+    -->
+    <PurgeCode>
+        <![CDATA[; SMuFF_PP: Purge start
+M83				; set extruder to relative mode (important!)
+G1 E{0:N4} F340	; Purge out old filament
+M400			; wait for move to finish
+G4 P2500		; wait for nozzle oozing out a bit
+M82 			; set extruder back to absolute mode
+; SMuFF_PP: Purge end]]>
+    </PurgeCode>
+    
+    <!-- 
+        ==================================================================
+        GCode to be used for relocation. Pre will insert the code before 
+        the tool change (T0, T1, T2...) happens, Post a code after the tool 
+        change. Primarily this is used to allow for retraction / deretraction
+        ==================================================================
+    -->
+    <PreToolChangeCode><![CDATA[G10]]></PreToolChangeCode>
+    <PostToolChangeCode><![CDATA[G11]]></PostToolChangeCode>
+
+    <!--
+        ===================================================================
+        The following settings can be overridden by command line parameters 
+        ===================================================================
+    -->
+    <Verbose>false</Verbose>            <!-- switch detailed information output on -->
+    <Threshold>54</Threshold>           <!-- The amount of filament (in mm) needed to be purged -->
+    <SkipThreshold>3</SkipThreshold>    <!-- The max. amount of filament (in mm) that will cause skipping a tool change (0 disables skipping) -->
+</root>
